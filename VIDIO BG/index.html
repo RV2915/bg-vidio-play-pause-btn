@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Video Play/Pause button</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        background-image: url("bgg.jpg");
+    }
+
+    .video-container {
+        /* position: relativte; */
+        position: absolute;
+        text-align: center;
+        top: 10%;
+        left: 20%;
+        transform: translate(-50% -50%);
+        /* border-left: 4px solid green;
+        border-right: 4px solid green;
+        border-top: 4px solid rgb(0, 0, 0);
+        border-bottom: 4px solid rgb(0, 0, 0); */
+
+    }
+
+     h1 {
+        padding-top: 20px;
+        background-color: chartreuse;
+        background-image: url("bgg.jpg");
+        -webkit-background-clip: text;
+        background-size: cover;
+        background-position: center;
+        color: transparent;
+        background-clip: text;
+        height: 30px;
+        width: 30%;
+        padding-bottom: 40px;
+        margin-left: 560px;
+        text-transform: capitalize;
+        border-bottom: 4px solid rgb(255, 255, 255);
+    }
+
+    button {
+        outline: none;
+        border: none;
+        margin-left: 3.5rem;
+        /* border-left: 4px solid green;
+        border-right: 4px solid green;
+        border-top: 4px solid rgb(0, 0, 0);
+        border-bottom: 4px solid rgb(0, 0, 0); */
+
+    }
+
+
+    video {
+
+        height: 600px;
+        width: 900px;
+        padding: 4rem;
+        border-radius: 15px;
+    }
+
+    .video-control {
+        position: absolute;
+        left: 1em;
+        bottom: 1em;
+        min-width: 7.5em;
+        padding: 0.5em 1em;
+        text-align: left;
+        border-radius: 9in;
+        background: #FFFB;
+    }
+
+    .video-control:not(.playing) .video-control-pause,
+    .video-control.playing .video-control-play {
+        display: none;
+    }
+
+    .video-control-symbol {
+        font: 1.75em/0 Apple Color Emoji;
+        vertical-align: -0.15em;
+    }
+</style>
+
+<body>
+
+    <h1>vidio play pause background</h1>
+
+    <div class="video-container">
+
+       
+
+        <video>
+            <source src="190301_1_25_11_preview.mp4">
+        </video>
+        <button class="video-control">
+            <span class="video-control-play">
+                <span class="video-control-symbol" aria-hidden="true">▶️</span>
+                <span class="video-control-label">Play</span>
+            </span>
+            <span class="video-control-pause">
+                <span class="video-control-symbol" aria-hidden="true">⏸</span>
+                <span class="video-control-label">Pause</span>
+            </span>
+        </button>
+    </div>
+
+
+    <script>
+        const videoElement = document.querySelector('video');
+        const playPauseButton = document.querySelector('button');
+
+        playPauseButton.addEventListener('click', () => {
+            playPauseButton.classList.toggle('playing');
+            if (playPauseButton.classList.contains('playing')) {
+                videoElement.play();
+            }
+            else {
+                videoElement.pause();
+            }
+        });
+
+        videoElement.addEventListener('ended', () => {
+            playPauseButton.classList.remove('playing');
+        });
+
+    </script>
+</body>
+
+</html>
